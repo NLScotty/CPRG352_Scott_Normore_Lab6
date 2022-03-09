@@ -27,14 +27,21 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService userService = new UserService();
-        RoleService roleService = new RoleService();
-
+        
+        String action = request.getParameter("action");
+        String email = request.getParameter("email");
+        
+        System.out.println(email + action);
+        if(action != null && action.equals("edit")){
+            request.setAttribute("test",email+" "+action);
+        }
+        if(action != null && action.equals("delete")){
+            request.setAttribute("test",email+" "+action);
+        }
         try{
-            List<User> users = userService.getAll();
-            List<Role> role = roleService.getAll();
-            
+            List<User> users = userService.getAll(); 
             request.setAttribute("users",users);
-            
+
         } catch(Exception ex){
             System.out.println(ex);
         }
@@ -44,6 +51,8 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        
     }
 }

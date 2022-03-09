@@ -11,6 +11,22 @@
         
     </head>
     <body>
+        <form action="user" method="post">
+            <h1>Edit Form</h1>
+            <input type="hidden" name="action" value="edit">
+            <label for="eEmail">Email: </label>
+            <input type="text" name="eEmail" id="eEmail" value="${eUser.email}">
+            <label for="eFName">First Name: </label>
+            <input type="text" name="eFName" id="eFName" value="${eUser.firstName}">
+            <label for="eLName">Last Name: </label>
+            <input type="text" name="eLName" id="eLName" value="${eUser.lastName}">
+            <label for="ePassword">Password: </label>
+            <input type="text" name="ePassword" id="ePassword" value="${eUser.password}">
+            <label for="eRole">Role: </label>
+            <input type="text" name="eRole" id="eRole" value="${eUser.role.name}">
+            <button type="submit">Update</button>
+        </form>
+        <h1>User Table</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -29,11 +45,27 @@
                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td>${user.role.name}</td>
-                        <td></td>
-                        <td></td>
+                        <td><a href="user?action=edit&email=${user.email}">Edit</a></td>
+                        <td><a href="user?action=delete&email=${user.email}">Delete</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
+        <form action="user" method="post">
+            <h1>Add Form</h1>
+            <input type="hidden" name="action" value="delete">
+            <label for="aEmail">Email: </label>
+            <input type="text" name="aEmail" id="aEmail">
+            <label for="aFName">First Name: </label>
+            <input type="text" name="aFName" id="aFName">
+            <label for="aLName">Last Name: </label>
+            <input type="text" name="aLName" id="aLName">
+            <label for="aPassword">Password: </label>
+            <input type="text" name="aPassword" id="aPassword">
+            <label for="aRole">Role: </label>
+            <input type="text" name="aRole" id="aRole">
+            <button type="submit">Update</button>
+        </form>
+        <p>${test}</p>
     </body>
 </html>
