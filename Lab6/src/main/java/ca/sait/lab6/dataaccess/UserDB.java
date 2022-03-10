@@ -45,6 +45,42 @@ public class UserDB {
 
         return users;
     }
+    
+    public List<User> getActive() throws Exception {
+        List<User> users = new ArrayList<>();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String sql = "SELECT * FROM user INNER JOIN role ON role.role_id = user.role WHERE active='1'";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                String email = rs.getString(1);
+                Boolean active = rs.getBoolean(2);
+                String firstName = rs.getString(3);
+                String lastName = rs.getString(4);
+                String password = rs.getString(5);
+                int roleID = rs.getInt(6);
+                String roleName=rs.getString(8);
+                
+                Role role = new Role(roleID, roleName);
+                User user = new User(email, active, firstName, lastName, password, role);
+                
+                users.add(user);
+            }
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+
+        return users;
+    }
 
     public User get(String email) throws Exception {
         User user = null;
@@ -68,8 +104,12 @@ public class UserDB {
                 
                 Role role = new Role(roleID, roleName);
                 user = new User(email, active, firstName, lastName, password, role);
+            }else{
+               System.out.println("no dice"); 
             }
-        } finally {
+        }catch(Exception ex){
+            System.out.println(ex);
+        }finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
@@ -82,7 +122,7 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO 'userdb'.'user' ('email', 'first_name', 'last_name', 'password', 'role') VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO userdb.user (email, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?)";
         
         boolean inserted = false;
         try {
@@ -105,7 +145,7 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE user SET 'first_name' = ?, 'last_name' = ?, 'password' = ?, 'role' = ?, email=?";
+        String sql = "UPDATE user SET first_name = ?, last_name = ?, PASSWORD = ?, role = ? WHERE email=?";
         
         boolean updated = false;
         

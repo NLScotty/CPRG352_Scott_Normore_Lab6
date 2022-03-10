@@ -13,6 +13,11 @@ public class UserService {
         return user;
     }
     
+    public List<User> getActive() throws Exception{
+        List<User> users = this.userDB.getActive();
+        return users;
+    }
+    
     public List<User> getAll() throws Exception {
         List<User> users = this.userDB.getAll();
         return users;

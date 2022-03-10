@@ -53,7 +53,7 @@
         </table>
         <form action="user" method="post">
             <h1>Add Form</h1>
-            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="action" value="add">
             <label for="aEmail">Email: </label>
             <input type="text" name="aEmail" id="aEmail">
             <label for="aFName">First Name: </label>
