@@ -105,7 +105,7 @@ public class UserDB {
                 Role role = new Role(roleID, roleName);
                 user = new User(email, active, firstName, lastName, password, role);
             }else{
-               System.out.println("no dice"); 
+               throw new Exception("Unable to select user"); 
             }
         }catch(Exception ex){
             System.out.println(ex);

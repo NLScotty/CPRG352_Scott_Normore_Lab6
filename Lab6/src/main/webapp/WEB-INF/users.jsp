@@ -23,7 +23,12 @@
             <label for="ePassword">Password: </label>
             <input type="text" name="ePassword" id="ePassword" value="${eUser.password}">
             <label for="eRole">Role: </label>
-            <input type="text" name="eRole" id="eRole" value="${eUser.role.name}">
+            <!--<input type="text" name="eRole" id="eRole" value="${eUser.role.name}">-->
+            <select name="eRole" id="eRole">
+                <c:forEach items="${roles}" var="role">
+                    <option value="${role.name}">${role.name}</option>
+                </c:forEach>
+            </select>
             <button type="submit">Update</button>
         </form>
         <h1>User Table</h1>
@@ -63,9 +68,14 @@
             <label for="aPassword">Password: </label>
             <input type="text" name="aPassword" id="aPassword">
             <label for="aRole">Role: </label>
-            <input type="text" name="aRole" id="aRole">
+            <!--<input type="text" name="aRole" id="aRole">-->
+            <select name="aRole" id="aRole">
+                <c:forEach items="${roles}" var="role">
+                    <option value="${role.name}">${role.name}</option>
+                </c:forEach>
+            </select>
             <button type="submit">Update</button>
         </form>
-        <p>${test}</p>
+        <p>${test} ${error}</p>
     </body>
 </html>
