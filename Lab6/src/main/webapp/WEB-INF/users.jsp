@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Users Page</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -23,7 +23,6 @@
             <label for="ePassword">Password: </label>
             <input type="text" name="ePassword" id="ePassword" value="${eUser.password}">
             <label for="eRole">Role: </label>
-            <!--<input type="text" name="eRole" id="eRole" value="${eUser.role.name}">-->
             <select name="eRole" id="eRole">
                 <c:forEach items="${roles}" var="role">
                     <option value="${role.name}">${role.name}</option>
@@ -68,7 +67,6 @@
             <label for="aPassword">Password: </label>
             <input type="text" name="aPassword" id="aPassword">
             <label for="aRole">Role: </label>
-            <!--<input type="text" name="aRole" id="aRole">-->
             <select name="aRole" id="aRole">
                 <c:forEach items="${roles}" var="role">
                     <option value="${role.name}">${role.name}</option>

@@ -86,7 +86,7 @@ public class UserServlet extends HttpServlet {
                 String lName = request.getParameter("eLName");
                 String password = request.getParameter("ePassword");
                 String roleName = request.getParameter("eRole");
-                if(email!=null && fName!=null && lName!=null && password!=null && roleName!=null && !email.equals("")){
+                if(email!=null && fName!=null && lName!=null && password!=null && roleName!=null && !email.equals("") && !fName.equals("") && !lName.equals("") && !password.equals("") && !roleName.equals("")){
                     int roleId= roleService.getRoleID(roleName);
                     if(roleId == -1){
                         throw new Exception("Invalid Role");
@@ -109,7 +109,7 @@ public class UserServlet extends HttpServlet {
                 String lName = request.getParameter("aLName");
                 String password = request.getParameter("aPassword");
                 String roleName = request.getParameter("aRole");
-                if(email!=null && fName!=null && lName!=null && password!=null && roleName!=null && !email.equals("")){
+                if(email!=null && fName!=null && lName!=null && password!=null && roleName!=null && !email.equals("") && !fName.equals("") && !lName.equals("") && !password.equals("") && !roleName.equals("")){
                     int roleId= roleService.getRoleID(roleName);
                     if(roleId == -1){
                         throw new Exception("Invalid Role");
